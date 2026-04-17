@@ -616,7 +616,7 @@ const Settings = () => {
                   </div>
                   <div>
                     <h3 className="font-semibold text-lg">Synapflow</h3>
-                    <p className="text-sm text-muted-foreground">Version 1.0.0</p>
+                    <p className="text-sm text-muted-foreground">Version 1.0.5</p>
                   </div>
                 </div>
 
