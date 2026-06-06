@@ -3,7 +3,7 @@ import { Event } from "@/types/event";
 import { Button } from "./ui/button";
 import { ChevronLeft, ChevronRight, Settings2 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import logo from "@/assets/logo.png";
+import logo from "@/assets/logo.svg";
 import { TooltipProvider } from "./ui/tooltip";
 import { SidebarSection } from "./SidebarSection";
 import { SidebarSectionId, SidebarSectionsVisible } from "@/hooks/useCloudSettings";
@@ -119,7 +119,7 @@ export const Sidebar = ({
         {/* Header with logo and toggle */}
         <div className="flex items-center justify-between">
           <div className={cn("flex items-center gap-3", isCollapsed && "justify-center w-full")}>
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-primary-glow flex items-center justify-center shadow-glow shrink-0">
+            <div className="w-10 h-10 rounded-xl bg-transparent flex items-center justify-center shadow-glow shrink-0">
               <img src={logo} alt="Synapflow Logo" className="h-6 w-6" />
             </div>
             {!isCollapsed && (

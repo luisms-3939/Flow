@@ -1,7 +1,7 @@
 export type EventType = "task" | "note" | "meeting" | "birthday";
 export type Priority = "low" | "medium" | "high";
 export type RecurrenceType = "none" | "daily" | "weekly" | "monthly" | "yearly";
-export type TaskStatus = "todo" | "in_progress" | "done";
+export type TaskStatus =  "todo" | "in_progress" | "done";
 
 export interface Subtask {
   id: string;

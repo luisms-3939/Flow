@@ -10,7 +10,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { useToast } from "@/hooks/use-toast";
 import { Loader2, Mail, Lock, User } from "lucide-react";
-import nameLogo from "@/assets/name_logo.png";
+import nameLogo from "@/assets/name_logo.svg";
 
 const loginSchema = z.object({
   email: z.string().email("Please enter a valid email address"),
@@ -119,7 +119,7 @@ const Auth = () => {
           </CardHeader>
           <CardContent>
             {isLogin ? (
-              <Form {...loginForm}>
+              <Form {...loginForm} key="login">
                 <form onSubmit={loginForm.handleSubmit(handleLogin)} className="space-y-4">
                   <FormField
                     control={loginForm.control}
@@ -132,10 +132,11 @@ const Auth = () => {
                             <Mail className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
                             <Input
                               {...field}
-                              type="email"
+                              type="text"
                               placeholder="you@example.com"
                               className="pl-10"
                               disabled={isLoading}
+                              onChange={(e) => field.onChange(e.target.value)}
                             />
                           </div>
                         </FormControl>
@@ -172,7 +173,7 @@ const Auth = () => {
                 </form>
               </Form>
             ) : (
-              <Form {...signupForm}>
+              <Form {...signupForm} key="signup">
                 <form onSubmit={signupForm.handleSubmit(handleSignup)} className="space-y-4">
                   <FormField
                     control={signupForm.control}
@@ -183,11 +184,12 @@ const Auth = () => {
                         <FormControl>
                           <div className="relative">
                             <User className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-                            <Input
-                              {...field}
+                            <Input                              
                               type="text"
                               placeholder="Your name"
-                              className="pl-10"
+                              className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base pl-10"
+                              value={field.value}
+                              onChange={(e) => field.onChange(e.target.value)}
                               disabled={isLoading}
                             />
                           </div>
@@ -206,10 +208,11 @@ const Auth = () => {
                           <div className="relative">
                             <Mail className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
                             <Input
-                              {...field}
-                              type="email"
+                              type="text"
                               placeholder="you@example.com"
-                              className="pl-10"
+                              className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base pl-10"
+                              value={field.value}
+                              onChange={(e) => field.onChange(e.target.value)}
                               disabled={isLoading}
                             />
                           </div>
@@ -254,7 +257,13 @@ const Auth = () => {
               </span>
               <button
                 type="button"
-                onClick={() => setIsLogin(!isLogin)}
+                onClick={() => {
+                  setIsLogin(!isLogin);
+                  setTimeout(() => {
+                    const firstInput = document.querySelector('input:not([type="password"])') as HTMLInputElement;
+                    if (firstInput) firstInput.focus();
+                  }, 100);
+                }}
                 className="text-primary hover:underline font-medium"
               >
                 {isLogin ? "Sign up" : "Sign in"}

@@ -82,7 +82,7 @@ export const TagsMultiSelect = ({
       <div className="space-y-2">
         <Label>Tags</Label>
         <div className="flex gap-2">
-          <Popover open={isSelectOpen} onOpenChange={setIsSelectOpen} modal={false}>
+          <Popover open={isSelectOpen} onOpenChange={setIsSelectOpen} modal={true}>
             <PopoverTrigger asChild>
               <Button
                 variant="outline"

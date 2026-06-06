@@ -22,15 +22,20 @@ interface CategoriesTagsContextType {
 const CategoriesTagsContext = createContext<CategoriesTagsContextType | undefined>(undefined);
 
 const defaultCategories: Category[] = [
-  { id: "1", name: "Work", color: "#3b82f6" },
-  { id: "2", name: "Personal", color: "#10b981" },
-  { id: "3", name: "Urgent", color: "#ef4444" },
+  { id: "1", name: "Work", color: "#ed2939" },
+  { id: "2", name: "Health", color: "#10b981" },
+  { id: "3", name: "Development", color: "#FF7538" },
+  { id: "4", name: "Holidays", color: "#008000" },
+  { id: "5", name: "Household", color: "#bf00ff" },
+  { id: "6", name: "Others", color: "#8c92ac" },
+  { id: "7", name: "Personal", color: "#1e90ff" },
 ];
 
 const defaultTags: Tag[] = [
-  { id: "1", name: "important", color: "#f59e0b" },
-  { id: "2", name: "review", color: "#8b5cf6" },
-  { id: "3", name: "urgent", color: "#ef4444" },
+  { id: "1", name: "High", color: "#f94d00" },
+  { id: "2", name: "Low", color: "#568203" },
+  { id: "3", name: "Urgent", color: "#ed1b24" },
+  { id: "4", name: "Medium", color: "#45b1e8" },
 ];
 
 const CATEGORIES_STORAGE_KEY = "synapflow-categories";

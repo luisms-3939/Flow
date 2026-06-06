@@ -1,4 +1,4 @@
-import { Settings } from "lucide-react";
+import { Settings, Timer, BarChart3 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "./ui/button";
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
@@ -10,6 +10,7 @@ import { ScrollArea } from "./ui/scroll-area";
 import { useToast } from "@/hooks/use-toast";
 import { HolidayManagementDialog } from "./HolidayManagementDialog";
 import { ViewMode } from "@/types/event";
+import { CalendarImportExport } from "./CalendarImportExport";
 
 interface SettingsPopoverProps {
   theme: "dark" | "light";
@@ -30,6 +31,11 @@ interface SettingsPopoverProps {
   onTaskDeadlinesToggle: (enabled: boolean) => void;
   userEmail?: string;
   onLogout?: () => void;
+  onImportExport?: () => void;
+  onFocusTimerClick?: () => void;
+  onAnalyticsClick?: () => void;
+  events?: any[];
+  onImport?: (events: any[]) => void;
 }
 
 export const SettingsPopover = ({
@@ -51,6 +57,11 @@ export const SettingsPopover = ({
   onTaskDeadlinesToggle,
   userEmail,
   onLogout,
+  onImportExport,
+  onFocusTimerClick,
+  onAnalyticsClick,
+  events,
+  onImport
 }: SettingsPopoverProps) => {
   const { toast } = useToast();
   const navigate = useNavigate();
@@ -242,6 +253,25 @@ export const SettingsPopover = ({
 
         {/* Quick Links */}
         <div className="space-y-2">
+          {events && onImport && (
+            <CalendarImportExport events={events} onImport={onImport} />
+          )}
+          <Button
+            variant="outline"
+            className="w-full justify-start text-sm gap-2"
+            onClick={onFocusTimerClick}
+            >
+              <Timer className="h-4 w-4" />
+              Focus Timer
+              </Button>
+              <Button
+              variant="outline"
+              className="w-full justify-start text-sm gap-2"
+              onClick={onAnalyticsClick}
+              >
+              <BarChart3 className="h-4 w-4" />
+              Product Analytics
+            </Button>
           <Button
             variant="outline"
             className="w-full justify-start text-sm"

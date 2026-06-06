@@ -211,15 +211,20 @@ BEGIN
   
   -- Create default categories
   INSERT INTO public.categories (user_id, name, color) VALUES
-    (NEW.id, 'Work', '#3b82f6'),
-    (NEW.id, 'Personal', '#10b981'),
-    (NEW.id, 'Urgent', '#ef4444');
+    (NEW.id, 'Work', '#ed2939'),
+    (NEW.id, 'Health', '#cf3476'),
+    (NEW.id, 'Development', '#ff7518'),
+    (NEW.id, 'Holidays', '#008000'),
+    (NEW.id, 'Household', '#bf00ff'),
+    (NEW.id, 'Others', '#8c92ac'),
+    (NEW.id, 'Personal', '#1e90ff');
   
   -- Create default tags
   INSERT INTO public.tags (user_id, name, color) VALUES
-    (NEW.id, 'important', '#f59e0b'),
-    (NEW.id, 'review', '#8b5cf6'),
-    (NEW.id, 'urgent', '#ef4444');
+    (NEW.id, 'High', '#f94d00'),
+    (NEW.id, 'Low', '#568203'),
+    (NEW.id, 'Urgent', '#ed1b24'),
+    (NEW.id, 'Medium', '#45b1e8');
   
   RETURN NEW;
 END;

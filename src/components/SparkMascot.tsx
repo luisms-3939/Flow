@@ -1,8 +1,8 @@
 import { cn } from "@/lib/utils";
-import sparkIdle from "@/assets/spark_idle.png";
-import sparkDoing from "@/assets/spark_doing.png";
-import sparkWellDone from "@/assets/spark_well_done.png";
-import spark from "@/assets/spark.png";
+import sparkIdle from "@/assets/spark_idle.svg";
+import sparkDoing from "@/assets/spark_doing.svg";
+import sparkWellDone from "@/assets/spark_well_done.svg";
+import spark from "@/assets/spark.svg";
 
 type SparkMood = "idle" | "tired" | "doing" | "wellDone";
 

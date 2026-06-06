@@ -23,7 +23,7 @@ import { useCloudSettings, SidebarSectionId } from "@/hooks/useCloudSettings";
 import { useLocalStorageMigration } from "@/hooks/useLocalStorageMigration";
 import { useAuth } from "@/contexts/AuthContext";
 import { useCategoriesTags } from "@/contexts/CategoriesTagsContext";
-import nameLogo from "@/assets/name_logo.png";
+import nameLogo from "@/assets/name_logo.svg";
 import { useToast } from "@/hooks/use-toast";
 import { SparkMascot } from "./SparkMascot";
 import { generateRecurringInstances } from "@/utils/recurrenceUtils";
@@ -466,12 +466,12 @@ export const Dashboard = () => {
             <header className="border-b border-border bg-card px-4 py-3">
               <div className="flex items-center justify-between">
                 <div>
-                  <img src={nameLogo} alt="Synapflow" className="h-6 mb-0.5" />
+                  <img src={nameLogo} alt="Synapflow" className="h-8 mb-0.5" />
                   <p className="text-xs text-muted-foreground">
                     {format(selectedDate, "EEE, MMM d")}
                   </p>
                 </div>
-                <div className="flex items-center gap-2">
+                <div className="flex-1 flex items-center justify-center gap-2">
                   <SearchBar 
                     ref={searchBarRef} 
                     events={events} 
@@ -534,14 +534,14 @@ export const Dashboard = () => {
         ) : (
           <>
             <header className="border-b border-border bg-card px-6 py-4">
-              <div className="flex items-center justify-between">
-                <div>
-                  <img src={nameLogo} alt="Synapflow" className="h-8 mb-1" />
-                  <p className="text-sm text-muted-foreground">
+              <div className="flex items-center justify-between gap-4">
+                <div className="flex items-center gap-4 shrink-0">
+                  <img src={nameLogo} alt="Synapflow" className="h-12" />
+                  <p className="text-sm text-muted-foreground whitespace-nowrap">
                     {format(selectedDate, "EEEE, MMMM d, yyyy")}
                   </p>
                 </div>
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-3 flex-1 justify-center">
                   <SearchBar 
                     ref={searchBarRef} 
                     events={events} 
@@ -549,29 +549,8 @@ export const Dashboard = () => {
                     categories={categories}
                     tags={tags}
                   />
-                  <CalendarImportExport 
-                    events={events} 
-                    onImport={handleImportEvents} 
-                  />
-                  <ViewToggle viewMode={viewMode} onChange={setViewMode} />
-                  <Button
-                    variant="outline"
-                    size="icon"
-                    onClick={() => setIsFocusTimerOpen(true)}
-                    className="relative"
-                    title="Focus Timer"
-                  >
-                    <Timer className="h-4 w-4" />
-                  </Button>
-                  <Button
-                    variant="outline"
-                    size="icon"
-                    onClick={() => setIsAnalyticsOpen(true)}
-                    className="relative"
-                    title="Productivity Analytics"
-                  >
-                    <BarChart3 className="h-4 w-4" />
-                  </Button>
+                  </div>
+                  <div className="flex items-center gap-3 shrink-0">
                   <AddEventButton 
                     onAddEvent={(event) => setEvents([...events, event])} 
                     isOpen={isAddEventOpen}
@@ -611,12 +590,16 @@ export const Dashboard = () => {
                     onTaskDeadlinesToggle={(enabled) => updateSetting("taskDeadlines", enabled)}
                     userEmail={user?.email}
                     onLogout={handleLogout}
+                    onFocusTimerClick={() => setIsFocusTimerOpen(true)}
+                    onAnalyticsClick={() => setIsAnalyticsOpen(true)}
+                    events={events}
+                    onImport={handleImportEvents}
                   />
                 </div>
               </div>
             </header>
 
-            <div className="flex-1 flex gap-6 p-6 overflow-auto">
+            <div className="flex-1 flex gap-8 p-6 overflow-auto">
               <div className={settings.previewPaneVisible ? "flex-1" : "w-full"}>
                 {viewMode === "monthly" && (
                   <Calendar
