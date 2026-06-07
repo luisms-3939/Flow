@@ -10,7 +10,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { useToast } from "@/hooks/use-toast";
 import { Loader2, Mail, Lock, User } from "lucide-react";
-import nameLogo from "@/assets/name_logo.svg";
+import nameLogo from "/name_logo.png";
 
 const loginSchema = z.object({
   email: z.string().email("Please enter a valid email address"),

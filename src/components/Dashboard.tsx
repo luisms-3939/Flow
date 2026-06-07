@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect, useMemo, useRef } from "react";
 import { Calendar } from "./Calendar";
 import { EventPreview } from "./EventPreview";
@@ -23,7 +24,7 @@ import { useCloudSettings, SidebarSectionId } from "@/hooks/useCloudSettings";
 import { useLocalStorageMigration } from "@/hooks/useLocalStorageMigration";
 import { useAuth } from "@/contexts/AuthContext";
 import { useCategoriesTags } from "@/contexts/CategoriesTagsContext";
-import nameLogo from "@/assets/name_logo.svg";
+import nameLogo from "/name_logo.png";
 import { useToast } from "@/hooks/use-toast";
 import { SparkMascot } from "./SparkMascot";
 import { generateRecurringInstances } from "@/utils/recurrenceUtils";
@@ -466,7 +467,7 @@ export const Dashboard = () => {
             <header className="border-b border-border bg-card px-4 py-3">
               <div className="flex items-center justify-between">
                 <div>
-                  <img src={nameLogo} alt="Synapflow" className="h-8 mb-0.5" />
+                  <img src={nameLogo} alt="Synapflow" className="h-12 mb-0.5" />
                   <p className="text-xs text-muted-foreground">
                     {format(selectedDate, "EEE, MMM d")}
                   </p>
@@ -536,7 +537,7 @@ export const Dashboard = () => {
             <header className="border-b border-border bg-card px-6 py-4">
               <div className="flex items-center justify-between gap-4">
                 <div className="flex items-center gap-4 shrink-0">
-                  <img src={nameLogo} alt="Synapflow" className="h-12" />
+                  <img src={nameLogo} alt="Synapflow" className="h-12 mb-0.5" />
                   <p className="text-sm text-muted-foreground whitespace-nowrap">
                     {format(selectedDate, "EEEE, MMMM d, yyyy")}
                   </p>
@@ -570,7 +571,6 @@ export const Dashboard = () => {
                       });
                     }}
                   />
-                  <WindowControls />
                   <SettingsPopover
                     theme={settings.theme}
                     onThemeChange={(theme) => updateSetting("theme", theme)}

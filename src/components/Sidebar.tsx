@@ -3,7 +3,7 @@ import { Event } from "@/types/event";
 import { Button } from "./ui/button";
 import { ChevronLeft, ChevronRight, Settings2 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import logo from "@/assets/logo.svg";
+import logo from "/logo.png";
 import { TooltipProvider } from "./ui/tooltip";
 import { SidebarSection } from "./SidebarSection";
 import { SidebarSectionId, SidebarSectionsVisible } from "@/hooks/useCloudSettings";
