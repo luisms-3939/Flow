@@ -26,6 +26,7 @@ import { useAuth } from "@/contexts/AuthContext";
 import { useCategoriesTags } from "@/contexts/CategoriesTagsContext";
 import nameLogo from "/name_logo.png";
 import { useToast } from "@/hooks/use-toast";
+import { cn } from "@/lib/utils";
 import { SparkMascot } from "./SparkMascot";
 import { generateRecurringInstances } from "@/utils/recurrenceUtils";
 import { useKeyboardShortcuts } from "@/hooks/useKeyboardShortcuts";
@@ -573,8 +574,8 @@ export const Dashboard = () => {
               </div>
             </header>
 
-            <div className="flex-1 flex gap-8 p-6 overflow-auto">
-              <div className={settings.previewPaneVisible ? "flex-1" : "w-full"}>
+            <div className="flex-1 flex gap-8 p-6 overflow-hidden">
+              <div className={cn(settings.previewPaneVisible ? "flex-1" : "w-full", "flex flex-col")}>
                 {viewMode === "monthly" && (
                   <Calendar
                     viewMode={viewMode}
@@ -781,3 +782,4 @@ export const Dashboard = () => {
     </div>
   );
 };
+
