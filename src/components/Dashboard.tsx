@@ -434,32 +434,6 @@ export const Dashboard = () => {
 
   return (
     <div className="flex h-screen bg-background pb-16 md:pb-0">
-      {/* Hide sidebar on mobile */}
-      <div className="hidden md:block">
-        <Sidebar
-          events={events}
-          onDateSelect={(date) => setSelectedDate(date)}
-          onTodayEventsClick={handleTodayEventsClick}
-          onNextMeetingClick={handleNextMeetingClick}
-          onStartFocusSession={() => setIsFocusTimerOpen(true)}
-          isCollapsed={settings.sidebarCollapsed}
-          onToggle={() => updateSetting("sidebarCollapsed", !settings.sidebarCollapsed)}
-          sectionsOrder={settings.sidebarSectionsOrder}
-          sectionsVisible={settings.sidebarSectionsVisible}
-          sidebarWidth={settings.sidebarWidth}
-          onSectionsOrderChange={(order) => updateSetting("sidebarSectionsOrder", order)}
-          onSectionVisibilityChange={(sectionId: SidebarSectionId, visible: boolean) => {
-            updateSetting("sidebarSectionsVisible", {
-              ...settings.sidebarSectionsVisible,
-              [sectionId]: visible,
-            });
-          }}
-          onWidthChange={(width) => updateSetting("sidebarWidth", width)}
-          todayFocusMinutes={todayTotalMinutes}
-          currentStreak={productivitySummary.currentStreak}
-        />
-      </div>
-      
       <main className="flex-1 flex flex-col overflow-hidden">
         {/* Wrap with PullToRefresh on mobile */}
         {isMobile ? (
