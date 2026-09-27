@@ -23,8 +23,25 @@ type ResetFormData = z.infer<typeof resetSchema>;
 
 const ResetPassword = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const [isReady, setIsReady] = useState(false);
   const navigate = useNavigate();
   const { toast } = useToast();
+
+  useEffect(() => {
+    // Handle the auth session from the reset password link
+    supabase.auth.onAuthStateChange(async (event, session) => {
+        if (event === "PASSWORD_RECOVERY") {
+            setIsReady(true);
+        }
+    });
+
+    // Also check if we already have a session
+    supabase.auth.getSession().then(({ data: { session } }) => {
+        if (session) {
+            setIsReady(true);
+        }
+    });
+  }, []);
 
   const form = useForm<ResetFormData>({
     resolver: zodResolver(resetSchema),
@@ -58,6 +75,11 @@ const ResetPassword = () => {
   return (
     <div className="min-h-screen bg-background flex items-center justify-center p-4">
       <div className="w-full max-w-md">
+        {!isReady ? (
+            <div className="text-center text-muted-foreground">
+                <p>Validating your reset link...</p>
+                </div>
+                ) :(
         <Card className="bg-card border-border shadow-elegant">
           <CardHeader className="space-y-1">
             <CardTitle className="text-2xl font-bold text-center">
@@ -122,9 +144,11 @@ const ResetPassword = () => {
             </Form>
           </CardContent>
         </Card>
-      </div>
+  )}
+  </div>
     </div>
   );
 };
+
 
 export default ResetPassword;
