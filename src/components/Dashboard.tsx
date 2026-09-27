@@ -574,7 +574,7 @@ export const Dashboard = () => {
               </div>
             </header>
 
-            <div className="flex-1 flex gap-8 p-6 overflow-hidden h-full">
+            <div className="flex-1 flex gap-8 p-6 overflow-hidden">
               <div className={cn(settings.previewPaneVisible ? "flex-1" : "w-full", "flex flex-col")}>
                 {viewMode === "monthly" && (
                   <Calendar
