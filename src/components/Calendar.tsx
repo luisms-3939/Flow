@@ -56,7 +56,7 @@ export const Calendar = ({ viewMode, selectedDate, onDateSelect, events, onDayCl
   };
 
   return (
-    <Card className="p-6 bg-gradient-to-br from-card to-card/80 backdrop-blur-sm border-border/50 shadow-elegant">
+    <Card className="p-6 bg-gradient-to-br from-card to-card/80 backdrop-blur-sm border-border/50 shadow-elegant h-full flex flex-col">
       <div className="flex items-center justify-between mb-6">
         <h2 className="text-xl font-semibold">{format(selectedDate, "MMMM yyyy")}</h2>
         <div className="flex gap-2">
@@ -79,7 +79,7 @@ export const Calendar = ({ viewMode, selectedDate, onDateSelect, events, onDayCl
         </div>
       </div>
 
-      <div className="grid grid-cols-7 gap-2">
+      <div className="grid grid-cols-7 gap-2 flex-1">
         {["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"].map((day) => (
           <div
             key={day}
@@ -110,7 +110,7 @@ export const Calendar = ({ viewMode, selectedDate, onDateSelect, events, onDayCl
               onDragOver={handleDragOver}
               onDrop={(e) => handleDrop(day, e)}
               className={cn(
-                "min-h-[120px] p-2 rounded-lg border transition-smooth relative cursor-pointer",
+                "min-h-[120px] p-2 rounded-lg border transition-smooth relative cursor-pointer h-full",
                 "hover:bg-muted hover:border-primary/50 hover:shadow-glow",
                 isSelected && "bg-muted border-primary shadow-glow",
                 !isSameMonth(day, selectedDate) && "opacity-40",
