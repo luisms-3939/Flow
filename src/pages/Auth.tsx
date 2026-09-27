@@ -4,7 +4,8 @@ import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useAuth } from "@/contexts/AuthContext";
-import { Button } from "@/components/ui/button";
+import { supabase } from "@/integrations/supabase/client";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
@@ -27,6 +28,9 @@ type SignupFormData = z.infer<typeof signupSchema>;
 const Auth = () => {
   const [isLogin, setIsLogin] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
+  const [isForgotPassword, setIsForgotPassword] = useState(false);
+  const [resetEmail, setResetEmail] = useState("");
+  const [resetSent, setResetSent] = useState(false);
   const { user, signIn, signUp } = useAuth();
   const navigate = useNavigate();
   const { toast } = useToast();
@@ -70,6 +74,27 @@ const Auth = () => {
         title: "Welcome back! 👋",
         description: "You've successfully logged in.",
       });
+    }
+  };
+
+  const handleForgotPassword = async () => {
+    if (!resetEmail) return;
+    setIsLoading(true);
+
+    const { error } = await supabase.auth.resetPasswordForEmail(resetEmail, {
+      redirectTo: `${window.location.origin}/reset-password`,
+    });
+
+    setIsLoading(false);
+
+    if (error) {
+      toast({
+        title: "Error",
+        description: error.message,
+        variant: "destructive",
+      });
+    } else {
+      setResetSent(true);
     }
   };
 
@@ -250,6 +275,17 @@ const Auth = () => {
                 </form>
               </Form>
             )}
+            {isLogin && (
+              <div className="text-center mt-2">
+                <button
+                  type="button"
+                  onClick={() => setIsForgotPassword(true)}
+                  className="text-sm text-muted-foreground hover:text-primary"
+                  >
+                    Forgot Password?
+                  </button>
+              </div>
+            )}
 
             <div className="mt-6 text-center text-sm">
               <span className="text-muted-foreground">
@@ -272,8 +308,65 @@ const Auth = () => {
           </CardContent>
         </Card>
       </div>
+      {isForgotPassword && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+          <div className="bg-card border border-border rounded-lg p-6 w-full max-w-md shadow-elegant">
+            {resetSent ? (
+              <div className="text-center space-y-4">
+                <h3 className="text-lg font-semibold">Check your email! 📧</h3>
+                <p className="text-sm text-muted-foreground">
+                  We sent a password reset link to <strong>{resetEmail}</strong>
+                  Check your inbox and follow the instructions.
+                  </p>
+                  <button
+                  onClick={() => {
+                    setIsForgotPassword(false);
+                    setResetSent(false);
+                    setResetEmail("");
+                  }}
+                  className="text-primary hover:underline text-sm"
+                  >
+                    Back to Sign 
+                    </button>
+                    </div>
+            ) : (
+              <div className="space-y-4">
+          <h3 className="text-lg font-semibold">Reset your password</h3>
+          <p className="text-sm text-muted-foreground">
+            Enter your email and we'll send you a reset link.
+          </p>
+          <input
+            type="email"
+            placeholder="your@email.com"
+            value={resetEmail}
+            onChange={(e) => setResetEmail(e.target.value)}
+            className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base"
+          />
+          <div className="flex gap-2">
+            <button
+              type="button"
+              onClick={() => setIsForgotPassword(false)}
+              className="flex-1 border border-border rounded-md py-2 text-sm hover:bg-muted"
+            >
+              Cancel
+            </button>
+            <button
+              type="button"
+              onClick={handleForgotPassword}
+              disabled={isLoading || !resetEmail}
+              className="flex-1 bg-primary text-primary-foreground rounded-md py-2 text-sm hover:opacity-90 disabled:opacity-50"
+            >
+              {isLoading ? "Sending..." : "Send Reset Link"}
+            </button>
+          </div>
+        </div>
+      )}
+    </div>
+  </div>
+)}
     </div>
   );
 };
 
 export default Auth;
+
