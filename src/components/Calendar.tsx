@@ -110,7 +110,7 @@ export const Calendar = ({ viewMode, selectedDate, onDateSelect, events, onDayCl
               onDragOver={handleDragOver}
               onDrop={(e) => handleDrop(day, e)}
               className={cn(
-                "min-h-[80px] p-2 rounded-lg border transition-smooth relative cursor-pointer",
+                "min-h-[120px] p-2 rounded-lg border transition-smooth relative cursor-pointer",
                 "hover:bg-muted hover:border-primary/50 hover:shadow-glow",
                 isSelected && "bg-muted border-primary shadow-glow",
                 !isSameMonth(day, selectedDate) && "opacity-40",
@@ -135,14 +135,15 @@ export const Calendar = ({ viewMode, selectedDate, onDateSelect, events, onDayCl
                     onDragEnd={handleDragEnd}
                     onClick={(e) => e.stopPropagation()}
                     className={cn(
-                      "w-full h-1.5 rounded-full cursor-grab active:cursor-grabbing flex items-center gap-0.5",
+                      "w-full px-1.5 py-0.5 rounded text-xs cursor-grab active:cursor-grabbing flex items-center gap-0.5 truncate text-white",
                       getEventColor(event.type)
                     )}
                     title={event.title}
                   >
                     {(event.recurrencePattern || event.isRecurringInstance) && (
-                      <Repeat className="h-2 w-2 text-white/80" />
+                      <Repeat className="h-2 w-2 text-white/80 shrink-0" />
                     )}
+                    <span className="truncate">{event.title}</span>
                   </div>
                 ))}
                 {dayEvents.length > 3 && (
