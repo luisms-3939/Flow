@@ -56,7 +56,7 @@ export const Calendar = ({ viewMode, selectedDate, onDateSelect, events, onDayCl
   };
 
   return (
-    <Card className="p-6 bg-gradient-to-br from-card to-card/80 backdrop-blur-sm border-border/50 shadow-elegant h-full flex flex-col">
+    <Card className="p-6 bg-gradient-to-br from-card to-card/80 backdrop-blur-sm border-border/50 shadow-elegant h-full flex flex-col overflow-hidden">
       <div className="flex items-center justify-between mb-6">
         <h2 className="text-xl font-semibold">{format(selectedDate, "MMMM yyyy")}</h2>
         <div className="flex gap-2">
@@ -79,7 +79,7 @@ export const Calendar = ({ viewMode, selectedDate, onDateSelect, events, onDayCl
         </div>
       </div>
 
-      <div className="grid grid-cols-7 gap-2 flex-1">
+      <div className="grid grid-cols-7 gap-2 flex-1 auto-rows-fr">
         {["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"].map((day) => (
           <div
             key={day}
