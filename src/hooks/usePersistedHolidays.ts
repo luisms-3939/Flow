@@ -8,21 +8,20 @@ export interface Holiday {
 }
 
 const defaultHolidays: Holiday[] = [
-  { id: "1", date: "2026-01-01", name: "New Year's Day" },
-  { id: "2", date: "2026-01-06", name: "Epiphany" },
-  { id: "3", date: "2026-04-03", name: "Good Friday" },
-  { id: "4", date: "2026-04-06", name: "Easter Monday" },
-  { id: "5", date: "2026-05-01", name: "Labour Day" },
-  { id: "6", date: "2026-05-25", name: "Whit Monday" },
-  { id: "7", date: "2026-06-24", name: "Sant Joan" },
-  { id: "8", date: "2026-08-15", name: "Assumption of Mary" },
-  { id: "9", date: "2026-09-11", name: "La Diada" },
-  { id: "10", date: "2026-09-24", name: "La Mercè" },
-  { id: "11", date: "2026-10-12", name: "Hispanic Day" },
-  { id: "12", date: "2026-12-06", name: "Constitution Day" },
-  { id: "13", date: "2026-12-08", name: "Immaculate Conception" },
-  { id: "14", date: "2026-12-25", name: "Christmas Day" },
-  { id: "15", date: "2026-12-26", name: "St. Stephen's Day" },
+  { id: "1", date: "2027-01-01", name: "New Year's Day" },
+  { id: "2", date: "2027-01-06", name: "Reyes" },
+  { id: "3", date: "2027-03-26", name: "Viernes Santo" },
+  { id: "4", date: "2027-03-29", name: "La Mona" },
+  { id: "5", date: "2027-05-01", name: "Labour Day" },
+  { id: "6", date: "2027-05-17", name: "Segunda Pascua" },
+  { id: "7", date: "2027-06-24", name: "Sant Joan" },
+  { id: "8", date: "2027-09-11", name: "La Diada" },
+  { id: "9", date: "2027-09-24", name: "La Mercè" },
+  { id: "10", date: "2026-10-12", name: "Hispanic Day" },
+  { id: "11", date: "2026-12-06", name: "Constitution Day" },
+  { id: "12", date: "2026-12-08", name: "Immaculate Conception" },
+  { id: "13", date: "2026-12-25", name: "Christmas Day" },
+  { id: "14", date: "2026-12-26", name: "St. Stephen's Day" },
 ];
 
 const STORAGE_KEY = "synapflow-holidays";
@@ -80,3 +79,4 @@ export const usePersistedHolidays = () => {
     isHoliday,
   };
 };
+
