@@ -58,6 +58,8 @@ export const EventPreviewIntegrated = ({ initialEvents, selectedDate }: EventPre
           <option value="task">Tasks</option>
           <option value="note">Notes</option>
           <option value="meeting">Meetings</option>
+          <option value="birthday">Birthday</option>
+          <option value="work">Work Day</option>
         </select>
         </label>
       </div>
