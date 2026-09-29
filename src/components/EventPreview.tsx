@@ -2,7 +2,7 @@ import { Event, ViewMode, EventType } from "@/types/event";
 import { Card } from "./ui/card";
 import { Button } from "./ui/button";
 import { format, isSameDay } from "date-fns";
-import { CheckCircle2, FileText, Users, Filter, Cake } from "lucide-react";
+import { CheckCircle2, FileText, Users, Filter, Cake, Briefcase } from "lucide-react";
 import { cn } from "@/lib/utils";
 import {
   DropdownMenu,
@@ -42,6 +42,8 @@ export const EventPreview = ({
         return <Users className="h-4 w-4" />;
       case "birthday":
         return <Cake className="h-4 w-4" />;
+      case "work":
+        return <Briefcase className="h-4 w-4" />;
     }
   };
 
@@ -55,6 +57,8 @@ export const EventPreview = ({
         return "border-l-event-meeting bg-event-meeting/10";
       case "birthday":
         return "border-l-event-birthday bg-event-birthday/10";
+      case "work":
+        return "border-l-event-work bg-event-work/10";
     }
   };
 
@@ -84,6 +88,9 @@ export const EventPreview = ({
             </DropdownMenuItem>
             <DropdownMenuItem onClick={() => onFilterChange("birthday")}>
               Birthdays
+            </DropdownMenuItem>
+            <DropdownMenuItem onClick={() => onFilterChange("work")}>
+              Work
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
