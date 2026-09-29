@@ -61,6 +61,7 @@ export default {
           note: "hsl(var(--event-note))",
           meeting: "hsl(var(--event-meeting))",
           birthday: "hsl(var(--event-birthday))",
+          work: "hsl(var(--event-work))",
         },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
