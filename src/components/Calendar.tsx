@@ -145,7 +145,12 @@ export const Calendar = ({ viewMode, selectedDate, onDateSelect, events, onDayCl
                     {(event.recurrencePattern || event.isRecurringInstance) && (
                       <Repeat className="h-2 w-2 text-white/80 shrink-0" />
                     )}
-                    <span className="truncate">{event.title}</span>
+                    <span className="truncate">
+                      {event.title}
+                      {event.startTime && (
+                        <span className="opacity-80"> . {event.startTime}{event.endTime ? `-${event.endTime}` : ""}</span>
+                      )}
+                      </span>
                   </div>
                 ))}
                 {dayEvents.length > 3 && (
