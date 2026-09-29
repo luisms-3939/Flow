@@ -42,6 +42,8 @@ export const Calendar = ({ viewMode, selectedDate, onDateSelect, events, onDayCl
         return "bg-event-meeting";
       case "birthday":
         return "bg-event-birthday";
+      case "work":
+        return "bg-event-work";
       default:
         return "bg-primary";
     }
