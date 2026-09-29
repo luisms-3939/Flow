@@ -9,6 +9,7 @@ import { TaskCreationForm } from "./TaskCreationForm";
 import { NoteCreationForm } from "./NoteCreationForm";
 import { MeetingCreationForm } from "./MeetingCreationForm";
 import { BirthdayCreationForm } from "./BirthdayCreationForm";
+import { WorkCreationForm } from "./WorkCreationForm";
 import { Button } from "./ui/button";
 
 interface EventModalProps {
@@ -84,6 +85,15 @@ export const EventModal = ({
             onDelete={initialEvent ? handleDelete : undefined}
           />
         );
+        case "work":
+          return (
+            <WorkCreationForm
+            onSave={handleSave}
+            onCancel={handleCancel}
+            initialEvent={initialEvent}
+            onDelete={initialEvent ? handleDelete : undefined}
+            />
+          );
       default:
         return null;
     }
