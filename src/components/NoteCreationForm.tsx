@@ -5,7 +5,11 @@ import { SparkLoader } from "./SparkLoader";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
 import { Textarea } from "./ui/textarea";
-import { Sparkles } from "lucide-react";
+import { Sparkles, CalendarIcon } from "lucide-react";
+import { Calendar } from "./ui/calendar";
+import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
+import { format } from "date-fns";
+import { cn } from "@/lib/utils";
 import { Badge } from "./ui/badge";
 import { CategoryDropdown } from "./CategoryDropdown";
 import { TagsMultiSelect } from "./TagsMultiSelect";
@@ -27,6 +31,7 @@ export const NoteCreationForm = ({ onSave, onCancel, initialEvent, onDelete }: N
   const [selectedTags, setSelectedTags] = useState<string[]>(initialEvent?.tags || []);
   const [attachments, setAttachments] = useState<string[]>(initialEvent?.attachments || []);
   const [suggestion, setSuggestion] = useState("");
+  const [date, setDate] = useState<Date>(initialEvent?.date ? new Date(initialEvent.date) : new Date());
   const [isLoading, setIsLoading] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
   const [isSuggestionLoading, setIsSuggestionLoading] = useState(false);
@@ -39,7 +44,7 @@ export const NoteCreationForm = ({ onSave, onCancel, initialEvent, onDelete }: N
       title,
       richContent,
       type: "note",
-      date: initialEvent?.date || new Date(),
+      date: date,
       category,
       tags: selectedTags,
       attachments,
@@ -95,6 +100,32 @@ export const NoteCreationForm = ({ onSave, onCancel, initialEvent, onDelete }: N
           placeholder="Write your note here... (supports rich text formatting)"
           className="bg-muted border-border min-h-[200px]"
         />
+      </div>
+      <div className="space-y-2">
+        <Label>Date</Label>
+        <Popover>
+          <PopoverTrigger asChild>
+            <Button
+              variant="outline"
+              className={cn(
+                "w-full justify-start text-left font-normal bg-muted border-border",
+                !date && "text-muted-foreground"
+              )}
+              >
+                <CalendarIcon className="mr-2 h-4 w-4" />
+                {date ? format(date, "PPP") : <span>Pick a date</span>}
+              </Button>
+          </PopoverTrigger>
+          <PopoverContent className="w-auto p-0 bg-popover border-border" align="start">
+            <Calendar
+            mode="single"
+            selected={date}
+            onSelect={(newDate) => newDate && setDate(newDate)}
+            initialFocus
+            className="pointer-events-auto"
+            />
+          </PopoverContent>
+        </Popover>
       </div>
 
       <CategoryDropdown
@@ -159,3 +190,4 @@ export const NoteCreationForm = ({ onSave, onCancel, initialEvent, onDelete }: N
     </div>
   );
 };
+
