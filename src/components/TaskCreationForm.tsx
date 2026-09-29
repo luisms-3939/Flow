@@ -37,6 +37,8 @@ export const TaskCreationForm = ({ onSave, onCancel, initialEvent, onDelete }: T
   const [recurrencePattern, setRecurrencePattern] = useState<RecurrencePattern | undefined>(initialEvent?.recurrencePattern);
   const [reminders, setReminders] = useState<string[]>(initialEvent?.reminders || []);
   const [attachments, setAttachments] = useState<string[]>(initialEvent?.attachments || []);
+  const [startTime, setStartTime] = useState(initialEvent?.startTime || "");
+  const [endTime, setEndTime] = useState(initialEvent?.endTime || "");
   const [newSubtask, setNewSubtask] = useState("");
   const [suggestion, setSuggestion] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -63,6 +65,8 @@ export const TaskCreationForm = ({ onSave, onCancel, initialEvent, onDelete }: T
       description,
       type: "task",
       date,
+      startTime: startTime || undefined,
+      endTime: endTime || undefined,
       priority,
       category,
       subtasks,
@@ -180,6 +184,26 @@ export const TaskCreationForm = ({ onSave, onCancel, initialEvent, onDelete }: T
           </Popover>
         </div>
       </div>
+      <div className="grid grid-cols-2 gap-4">
+        <div className="space-y-2">
+          <Label>Start Time</Label>
+          <Input
+          type="time"
+          value={startTime}
+          onChange={(e) => setStartTime(e.target.value)}
+          className="bg-muted border-border"
+          />
+        </div>
+        <div className="space-y-2">
+          <Label>End Time</Label>
+          <Input
+          type="time"
+          value={endTime}
+          onChange={(e) => setEndTime(e.target.value)}
+          className="bg-muted border-border"
+          />
+        </div>
+      </div>
 
       <RecurrenceSelector value={recurrencePattern} onChange={setRecurrencePattern} />
 
@@ -272,3 +296,4 @@ export const TaskCreationForm = ({ onSave, onCancel, initialEvent, onDelete }: T
     </div>
   );
 };
+
