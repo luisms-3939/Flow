@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Button } from "./ui/button";
-import { Plus, CheckCircle2, FileText, Users, Cake } from "lucide-react";
+import { Plus, CheckCircle2, FileText, Users, Cake, Briefcase } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -60,6 +60,10 @@ export const AddEventButton = ({ onAddEvent, isOpen: externalIsOpen, onOpenChang
           <DropdownMenuItem onClick={() => handleSelect("birthday")} className="gap-2">
             <Cake className="h-4 w-4 text-event-birthday" />
             New Birthday
+          </DropdownMenuItem>
+          <DropdownMenuItem onClick={() => handleSelect("work")} className="gap-2">
+            <Briefcase className="h-4 w-4 text-blue-400" />
+            New Work Day
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
